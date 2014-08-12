@@ -52,7 +52,7 @@ class Yo
         );
 
         if (!empty($link))
-            $params['link'] = $link;
+            $params['post']['link'] = $link;
 
         $response = $this->_request($params);
 
@@ -122,7 +122,7 @@ class Yo
 
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
-        
+
         curl_close($ch);
 
         $result = json_decode($response, true);
