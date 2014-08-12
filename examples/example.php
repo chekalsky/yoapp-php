@@ -6,10 +6,13 @@
     try {
         $yo = new \che\Yo($token);
 
-        $yo->sendAll('http://the.tj/'); // or you can yo without link
+        // send a yo to all subscribers
+        $yo->sendAll('http://the.tj/'); // or you can yo without link: $yo->sendAll();
 
-        $yo->sendUser('COMPMAN', 'http://the.tj/'); // or you can yo without link
+        // send a yo to one subscriber
+        $yo->sendUser('COMPMAN', 'http://the.tj/'); // or you can yo without link: $yo->sendUser('COMPMAN');
 
+        // count of subscribers
         $count = $yo->subscribersCount();
         echo 'Count: ' . $count;
     } catch (\che\YoException $e) {

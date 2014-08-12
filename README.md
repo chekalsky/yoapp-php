@@ -17,6 +17,7 @@ Basically you can use library like that:
 try {
     $yo = new \che\Yo({API_TOKEN});
 
+    // send a yo to all subscribers
     $yo->sendAll();
 } catch (\che\YoException $e) {
     echo "Error #" . $e->getCode() . ": " . $e->getMessage();
