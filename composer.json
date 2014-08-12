@@ -1,0 +1,27 @@
+{
+    "name": "chekalskiy/yoapp-php",
+    "license": "MIT",
+    "description": "PHP wrapper for Yo app API (justyo.co)",
+    "keywords": ["yo", "api", "yoapp", "justyo.co"],
+    "homepage": "https://github.com/chekalskiy/yoapp-php",
+    "authors": [
+        {
+            "name": "Ilya Chekalskiy",
+            "email": "ilya@chekalskiy.ru",
+            "homepage": "http://chekalskiy.ru"
+        }
+    ],
+    "support": {
+        "email": "ilya@chekalskiy.ru",
+        "issues": "https://github.com/chekalskiy/yoapp-php/issues",
+        "source": "https://github.com/chekalskiy/yoapp-php"
+    },
+    "require": {
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "che\\": ""
+        }
+    }
+}
