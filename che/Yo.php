@@ -28,8 +28,12 @@ class Yo
     {
         $this->_request(array(
             'method'   => 'POST',
-            'endpoint' => 'yoall'
+            'endpoint' => 'yoall',
+            'post'     => array()
         ));
+
+        if (!empty($link))
+            $params['post']['link'] = $link;
 
         return true;
     }
