@@ -26,14 +26,15 @@ class Yo
      */
     public function sendAll($link = false)
     {
-        $this->_request(array(
+        $params = array(
             'method'   => 'POST',
-            'endpoint' => 'yoall',
-            'post'     => array()
-        ));
+            'endpoint' => 'yoall'
+        );
 
         if (!empty($link))
-            $params['post']['link'] = $link;
+            $params['post'] = array('link' => $link);
+
+        $this->_request($params);
 
         return true;
     }
@@ -101,7 +102,7 @@ class Yo
             CURLOPT_URL            => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT        => 15,
-            CURLOPT_USERAGENT      => 'Che\yoapp-php (https://github.com/chekalskiy/yoapp-php)'
+            CURLOPT_USERAGENT      => 'che\yoapp-php (https://github.com/chekalskiy/yoapp-php)'
         );
 
         switch ($method) {
