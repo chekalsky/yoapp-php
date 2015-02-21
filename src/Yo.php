@@ -14,8 +14,9 @@ class Yo
 
     public function __construct($apiToken)
     {
-        if (!empty($apiToken))
+        if (!empty($apiToken)) {
             $this->apiToken = $apiToken;
+        }
     }
 
     /**
@@ -27,12 +28,13 @@ class Yo
     public function sendAll($link = false)
     {
         $params = array(
-            'method'   => 'POST',
-            'endpoint' => 'yoall'
+            'method' => 'POST',
+            'endpoint' => 'yoall',
         );
 
-        if (!empty($link))
+        if (!empty($link)) {
             $params['post'] = array('link' => $link);
+        }
 
         $this->_request($params);
 
@@ -49,20 +51,23 @@ class Yo
     public function sendUser($username, $link = false)
     {
         $params = array(
-            'method'   => 'POST',
+            'method' => 'POST',
             'endpoint' => 'yo',
-            'post'     => array(
-                'username' => $username
-            )
+            'post' => array(
+                'username' => $username,
+            ),
         );
 
-        if (!empty($link))
+        if (!empty($link)) {
             $params['post']['link'] = $link;
+        }
 
         $response = $this->_request($params);
 
-        if (isset($response['result']) && $response['result'] == 'OK')
+        if (isset($response['result']) && $response['result'] == 'OK') {
             return true;
+        }
+
         return false;
     }
 
@@ -74,12 +79,14 @@ class Yo
     public function subscribersCount()
     {
         $response = $this->_request(array(
-            'method'   => 'GET',
-            'endpoint' => 'subscribers_count'
+            'method' => 'GET',
+            'endpoint' => 'subscribers_count',
         ));
 
-        if (isset($response['result']))
+        if (isset($response['result'])) {
             return intval($response['result']);
+        }
+
         return false;
     }
 
@@ -93,16 +100,17 @@ class Yo
         $method = (isset($params['method'])) ? strtoupper($params['method']) : 'GET';
         $apiToken = $this->apiToken;
 
-        if (empty($apiToken))
+        if (empty($apiToken)) {
             throw new YoException('You need to setup your token. See http://yoapi.justyo.co/', 400);
+        }
 
         $url = $this->apiUrl . $params['endpoint'] . '/';
 
         $options = array(
-            CURLOPT_URL            => $url,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT        => 15,
-            CURLOPT_USERAGENT      => 'che\yoapp-php (https://github.com/chekalskiy/yoapp-php)'
+            CURLOPT_TIMEOUT => 15,
+            CURLOPT_USERAGENT => 'che\yoapp-php (https://github.com/chekalskiy/yoapp-php)',
         );
 
         switch ($method) {
@@ -111,7 +119,7 @@ class Yo
 
                 $post = (isset($params['post'])) ? $params['post'] : array();
                 $options[CURLOPT_POSTFIELDS] = array_merge(array(
-                    'api_token' => $apiToken
+                    'api_token' => $apiToken,
                 ), $post);
                 break;
 
@@ -156,4 +164,5 @@ class Yo
     }
 }
 
-class YoException extends \Exception {}
+class YoException extends \Exception
+{}
