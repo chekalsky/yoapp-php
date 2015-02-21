@@ -20,8 +20,6 @@
         "ext-curl": "*"
     },
     "autoload": {
-        "psr-0": {
-            "che\\": ""
-        }
+        "psr-4": { "che\\": "src/" }
     }
 }
