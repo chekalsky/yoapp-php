@@ -33,7 +33,7 @@ class Yo
         );
 
         if (isset($data['link'])) {
-            $params['post'] = array('link' => $link);
+            $params['post'] = array('link' => $data['link']);
         }
 
         $this->_request($params);
