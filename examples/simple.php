@@ -1,5 +1,5 @@
 <?php
-    require './../che/Yo.php';
+    require './../src/Yo.php';
 
     $token = '{API_TOKEN}';
 
@@ -7,7 +7,9 @@
         $yo = new \che\Yo($token);
 
         // send a yo to all subscribers
-        $yo->sendAll('http://the.tj/'); // or you can yo without link: $yo->sendAll();
+        $yo->sendAll();
+        // with link
+        $yo->sendAll(array('link' => 'http://the.tj/'));
 
         // send a yo to one subscriber
         $yo->sendUser('COMPMAN');
