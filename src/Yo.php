@@ -10,7 +10,7 @@ namespace che;
 class Yo
 {
     protected $apiToken;
-    protected $apiUrl = 'http://api.justyo.co/';
+    protected $apiUrl = 'https://api.justyo.co/';
 
     public function __construct($apiToken)
     {
@@ -22,17 +22,17 @@ class Yo
     /**
      * Send A Yo To All Subscribers
      *
-     * @param  string  $link
+     * @param  array  $data
      * @return boolean
      */
-    public function sendAll($link = false)
+    public function sendAll($data = array())
     {
         $params = array(
             'method' => 'POST',
             'endpoint' => 'yoall',
         );
 
-        if (!empty($link)) {
+        if (isset($data['link'])) {
             $params['post'] = array('link' => $link);
         }
 
@@ -45,20 +45,22 @@ class Yo
      * Yo Individual Usernames
      *
      * @param  string  $username
-     * @param  string  $link
+     * @param  array   $data
      * @return boolean
      */
-    public function sendUser($username, $link = false)
+    public function sendUser($username, $data = array())
     {
         $params = array(
             'method' => 'POST',
             'endpoint' => 'yo',
             'post' => array(
                 'username' => $username,
-            ),
+            )
         );
 
-        if (!empty($link)) {
+        if (isset($data['location'])) {
+            $params['post']['location'] = (is_array($data['location'])) ? implode(',', $data['location']) : $data['location'];
+        } elseif (isset($data['link'])) {
             $params['post']['link'] = $link;
         }
 
@@ -101,7 +103,7 @@ class Yo
         $apiToken = $this->apiToken;
 
         if (empty($apiToken)) {
-            throw new YoException('You need to setup your token. See http://yoapi.justyo.co/', 400);
+            throw new YoException('You need to setup your token. Get it at http://dev.justyo.co', 400);
         }
 
         $url = $this->apiUrl . $params['endpoint'] . '/';
@@ -109,8 +111,10 @@ class Yo
         $options = array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 15,
+            CURLOPT_TIMEOUT => 10,
             CURLOPT_USERAGENT => 'che\yoapp-php (https://github.com/chekalskiy/yoapp-php)',
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
         );
 
         switch ($method) {

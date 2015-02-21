@@ -1,19 +1,29 @@
-# YO APP PHP #
+![Yo logo](http://i.imgur.com/CdlzlHT.png) Yo API
+============
 PHP wrapper for Yo App API (http://justyo.co)
 
-[Yo API documentation](http://dev.justyo.co/yo/documents.html)
+[Yo API documentation](http://docs.justyo.co/)
 
-## Example ##
+## Installation
+You can install `yoapp-php` by using [Composer](http://getcomposer.org/)
+```
+"require": {
+    "chekalskiy/yoapp-php": "~1.0"
+}
+```
+
+
+## Example
 You can find example code in `examples/` directory.
 
-First of all you need to register your own personal Yo account using your mobile phone. Then [create new api account](http://dev.justyo.co/yo/dashboard.html) with any other username.
+First of all you need to register your own personal Yo account using your mobile phone. Then [create new api account](http://dev.justyo.co/) with any other username.
 
 Then replace `{API_TOKEN}` in `example.php` with your own token.
 
 
-Basically you can use library like that:
+Simple example:
 
-```
+```php
 try {
     $yo = new \che\Yo({API_TOKEN});
 
@@ -24,17 +34,8 @@ try {
 }
 ```
 
-## Installation ##
-You can install `yoapp-php` by using [Composer](http://getcomposer.org/)
-```
-"require": {
-    "chekalskiy/yoapp-php": "dev-master"
-}
-```
-  
-or by using simple `include`.
 
-## Support ##
+## Support
 email: <ilya@chekalskiy.ru>  
 vk: [chekalskiy](https://vk.com/chekalskiy)  
 twitter: [@i_compman](https://twitter.com/i_compman)

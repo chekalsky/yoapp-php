@@ -10,7 +10,11 @@
         $yo->sendAll('http://the.tj/'); // or you can yo without link: $yo->sendAll();
 
         // send a yo to one subscriber
-        $yo->sendUser('COMPMAN', 'http://the.tj/'); // or you can yo without link: $yo->sendUser('COMPMAN');
+        $yo->sendUser('COMPMAN');
+        // with link
+        $yo->sendUser('COMPMAN', array('link' => 'http://the.tj/'));
+        // with location
+        $yo->sendUser('COMPMAN', array('location' => array(59.939364,30.316040)));
 
         // count of subscribers
         $count = $yo->subscribersCount();
