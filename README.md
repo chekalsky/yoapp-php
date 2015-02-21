@@ -14,28 +14,25 @@ You can install `yoapp-php` by using [Composer](http://getcomposer.org/)
 
 
 ## Example
-You can find example code in `examples/` directory.
-
 First of all you need to register your own personal Yo account using your mobile phone. Then [create new api account](http://dev.justyo.co/) with any other username.
 
-Then replace `{API_TOKEN}` in `example.php` with your own token.
+Then replace `{API_TOKEN}` with your own token.
 
-
-Simple example:
 
 ```php
 try {
     $yo = new \che\Yo({API_TOKEN});
 
     // send a yo to all subscribers
-    $yo->sendAll();
+    $yo->sendAll(array('link' => 'http://example.com'));
 } catch (\che\YoException $e) {
     echo "Error #" . $e->getCode() . ": " . $e->getMessage();
 }
 ```
 
+You can find more examples in `examples` directory.
 
-## Support
+## Contacts
 email: <ilya@chekalskiy.ru>  
 vk: [chekalskiy](https://vk.com/chekalskiy)  
 twitter: [@i_compman](https://twitter.com/i_compman)

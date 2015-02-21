@@ -61,12 +61,12 @@ class Yo
         if (isset($data['location'])) {
             $params['post']['location'] = (is_array($data['location'])) ? implode(',', $data['location']) : $data['location'];
         } elseif (isset($data['link'])) {
-            $params['post']['link'] = $link;
+            $params['post']['link'] = $data['link'];
         }
 
         $response = $this->_request($params);
 
-        if (isset($response['result']) && $response['result'] == 'OK') {
+        if (isset($response['success']) && $response['success'] == true) {
             return true;
         }
 
@@ -85,8 +85,8 @@ class Yo
             'endpoint' => 'subscribers_count',
         ));
 
-        if (isset($response['result'])) {
-            return intval($response['result']);
+        if (isset($response['count'])) {
+            return intval($response['count']);
         }
 
         return false;
@@ -111,7 +111,7 @@ class Yo
         $options = array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 10,
+            CURLOPT_TIMEOUT => 15,
             CURLOPT_USERAGENT => 'che\yoapp-php (https://github.com/chekalskiy/yoapp-php)',
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false
@@ -138,9 +138,15 @@ class Yo
         curl_setopt_array($ch, $options);
 
         $response = curl_exec($ch);
+        $errno = curl_errno($ch);
+        $error = curl_error($ch);
         $info = curl_getinfo($ch);
 
         curl_close($ch);
+
+        if ($errno !== 0) {
+            throw new YoException("cURL error #{$errno}: {$error}", $errno);
+        }
 
         $result = json_decode($response, true);
 
