@@ -31,8 +31,3 @@ try {
 ```
 
 You can find more examples in `examples` directory.
-
-## Contacts
-email: <ilya@chekalskiy.ru>  
-vk: [chekalskiy](https://vk.com/chekalskiy)  
-twitter: [@i_compman](https://twitter.com/i_compman)
